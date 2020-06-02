@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Todo } from '../../interfaces/todo.interface';
+import { Todo } from '../../models/todo.model';
 
 @Component({
   selector: 'app-add-todo',
@@ -25,6 +25,7 @@ export class AddTodoComponent implements OnInit {
 
   onSubmit() {
     this.newTodo = {
+      id: (new Date()).getTime() + '',
       message: this.form.value.message,
       done: false,
     };

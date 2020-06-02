@@ -3,6 +3,11 @@
     <mat-card-title class="h4 todos-list__title">Stuff {{ type | lowercase }}</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <app-todo *ngFor="let item of list" [data]="item" class="todo"></app-todo>
+    <app-todo
+      *ngFor="let item of list"
+      [data]="item"
+      (uncheck)="handleUncheck($event)"
+      class="todo"
+    ></app-todo>
   </mat-card-content>
 </mat-card>

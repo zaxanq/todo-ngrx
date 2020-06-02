@@ -1,11 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Status } from '../../enums/status.enum';
-import { Todo } from '../../interfaces/todo.interface';
+import { Todo } from '../../models/todo.model';
 
 @Component({
   selector: 'app-todos-list',
   templateUrl: './todos-list.component.html',
-  styleUrls: ['./todos-list.component.scss']
+  styleUrls: ['./todos-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodosListComponent implements OnInit {
   @Input()
@@ -13,9 +14,26 @@ export class TodosListComponent implements OnInit {
   @Input()
   list: Todo[];
 
-  constructor() { }
+  @Output()
+  listUpdated: EventEmitter<{ list: Todo[], type: Status.Todo | Status.Done }>
+    = new EventEmitter<{ list: Todo[], type: Status.Todo | Status.Done }>();
+
+  constructor() {
+  }
 
   ngOnInit(): void {
+    console.log(this.list);
+  }
+
+  handleUncheck(updatedTodo: Todo) {
+    const updatedList = this.list.map(
+      (todo) => todo.id === updatedTodo.id ? updatedTodo : todo
+    );
+
+    this.listUpdated.emit({
+      list: updatedList,
+      type: this.type,
+    });
   }
 
 }

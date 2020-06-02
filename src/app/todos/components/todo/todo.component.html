@@ -1,4 +1,5 @@
 <mat-checkbox
   [checked]="data.done"
+  (change)="handleChange($event)"
   class="todo__message"
 >{{ data.message }}</mat-checkbox>

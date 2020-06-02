@@ -1,17 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './store';
 
 import { TodosComponent } from './containers/todos/todos.component';
 
 import { AddTodoComponent } from './components/add-todo/add-todo.component';
 import { TodosListComponent } from './components/todos-list/todos-list.component';
 import { TodoComponent } from './components/todo/todo.component';
-import { MatCardModule } from '@angular/material/card';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -22,15 +25,17 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
-    MatFormFieldModule,
-    MatInputModule,
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    StoreModule.forFeature('todos', reducers),
   ],
   exports: [
     TodosComponent,
   ]
 })
-export class TodosModule { }
+export class TodosModule {
+}
