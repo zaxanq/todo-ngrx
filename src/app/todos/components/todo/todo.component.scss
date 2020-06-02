@@ -1,0 +1,17 @@
+@import '~src/styles/variables';
+
+:host {
+  display: block;
+  padding: $todo-padding;
+  margin: $todo-margin;
+  border-left: 4px solid transparent;
+
+  &:hover {
+    border-left-color: $todo-hover-indicator-color;
+    cursor: pointer;
+  }
+}
+
+.todo__message {
+  margin: $todo-margin;
+}

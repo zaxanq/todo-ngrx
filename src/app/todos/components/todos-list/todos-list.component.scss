@@ -1,0 +1,19 @@
+@import '~src/styles/variables';
+
+:host {
+  display: block;
+  width: 100%;
+  padding: 0 2rem;
+
+  .todo:not(:last-child) {
+    border-bottom: $todo-border-bottom;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: $todos-list-gap;
+  }
+}
+
+.todos-list__title {
+  margin-bottom: 0.5rem;
+}

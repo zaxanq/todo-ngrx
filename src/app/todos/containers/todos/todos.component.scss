@@ -1,3 +1,5 @@
+@import '~src/styles/variables';
+
 :host {
   display: flex;
   flex-direction: column;
@@ -5,5 +7,5 @@
   align-items: center;
   width: 50%;
   height: 100%;
-  padding-top: 5rem;
+  padding-top: $todos-padding-top;
 }
