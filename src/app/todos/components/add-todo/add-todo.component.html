@@ -1,0 +1,17 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+  class="add-todo__form"
+>
+  <mat-form-field appearance="outline">
+    <mat-label>To do...</mat-label>
+    <input matInput type="text" formControlName="message">
+  </mat-form-field>
+  <button
+    mat-raised-button
+    color="primary"
+    type="submit"
+    [disabled]="form.invalid"
+    class="add-todo__submit-button"
+  >Add</button>
+</form>

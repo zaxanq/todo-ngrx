@@ -1,0 +1,17 @@
+:host,
+.add-todo__form {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.mat-form-field {
+  flex: 1;
+}
+
+.add-todo__submit-button {
+  margin-left: 2rem;
+  margin-bottom: 1.34375em; // same as mat-form-field padding-bottom
+}
+
