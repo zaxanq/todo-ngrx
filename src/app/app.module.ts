@@ -9,10 +9,12 @@ import { EffectsModule } from '@ngrx/effects';
 import { AppComponent } from './app.component';
 import { TodosModule } from './todos/todos.module';
 import { environment } from '../environments/environment';
+import { ConnectionStatusComponent } from './components/connection-status/connection-status.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ConnectionStatusComponent,
   ],
   imports: [
     BrowserModule,

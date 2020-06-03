@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import * as todoActions from '../actions/todos.action';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { TodosService } from '../../services/todos.service';
 import { Todo } from '../../models/todo.model';
 import { of } from 'rxjs';
+import { ConnectionService } from '../../services/connection.service';
 
 @Injectable()
 export class TodosEffect {
@@ -13,8 +14,12 @@ export class TodosEffect {
     ofType(todoActions.LOAD_TODOS),
     switchMap(() => this.todosService.getTodos()
       .pipe(
+        tap(() => { this.connectionService.changeStatus('connected'); }),
         map((todos: Todo[]) => new todoActions.LoadTodosSuccess(todos)),
-        catchError((error: any) => of(new todoActions.LoadTodosFail(error)))
+        catchError((error: any) => {
+          this.connectionService.changeStatus('disconnected');
+          return of(new todoActions.LoadTodosFail(error));
+        })
       )
     )
   );
@@ -26,8 +31,12 @@ export class TodosEffect {
     switchMap((todo: Todo) => this.todosService
       .addTodo(todo)
       .pipe(
+        tap(() => { this.connectionService.changeStatus('connected'); }),
         map((newTodo: Todo) => new todoActions.CreateTodoSuccess(newTodo)),
-        catchError((error: any) => of(new todoActions.CreateTodoFail(error)))
+        catchError((error: any) => {
+          this.connectionService.changeStatus('disconnected');
+          return of(new todoActions.CreateTodoFail(error));
+        })
       )
     )
   );
@@ -39,8 +48,12 @@ export class TodosEffect {
     switchMap((todo: Todo) => this.todosService
       .updateTodo(todo)
       .pipe(
+        tap(() => { this.connectionService.changeStatus('connected'); }),
         map((updatedTodo: Todo) => new todoActions.UpdateTodoSuccess(updatedTodo)),
-        catchError((error: any) => of(new todoActions.UpdateTodoFail(error)))
+        catchError((error: any) => {
+          this.connectionService.changeStatus('disconnected');
+          return of(new todoActions.UpdateTodoFail(error));
+        })
       )
     )
   );
@@ -53,7 +66,10 @@ export class TodosEffect {
       .removeTodo(todo)
       .pipe(
         map(() => new todoActions.RemoveTodoSuccess(todo)),
-        catchError((error: any) => of(new todoActions.RemoveTodoFail(error)))
+        catchError((error: any) => {
+          this.connectionService.changeStatus('disconnected');
+          return of(new todoActions.RemoveTodoFail(error));
+        })
       )
     )
   );
@@ -61,6 +77,7 @@ export class TodosEffect {
   constructor(
     private actions$: Actions,
     private todosService: TodosService,
+    private connectionService: ConnectionService,
   ) {
   }
 }

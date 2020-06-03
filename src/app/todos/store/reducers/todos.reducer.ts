@@ -38,11 +38,21 @@ export function reducer(
     }
 
     case fromTodos.LOAD_TODOS_FAIL: {
-      return {
+      const localData = localStorage.getItem('data');
+      let newState = {
         ...state,
         loading: false,
         loaded: false,
       };
+
+      if (localData) {
+        newState = {
+          ...newState,
+          data: JSON.parse(localData),
+        };
+      }
+
+      return newState;
     }
 
     case fromTodos.CREATE_TODO_SUCCESS: {

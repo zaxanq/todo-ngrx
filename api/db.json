@@ -8,17 +8,17 @@
     {
       "id": "1591095613835",
       "message": "Work",
-      "done": true
+      "done": false
     },
     {
       "id": "1591095626046",
-      "message": "Watch a movie",
+      "message": "Watch a tv series",
       "done": false
     },
     {
       "id": "1591095631377",
       "message": "Brush teeth",
-      "done": true
+      "done": false
     },
     {
       "id": "1591095636291",
@@ -28,7 +28,7 @@
     {
       "id": "1591095640846",
       "message": "Sleep",
-      "done": false
+      "done": true
     }
   ]
 }

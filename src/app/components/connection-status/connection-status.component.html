@@ -1,0 +1,8 @@
+<ng-container *ngIf="(status$ | async) as status">
+  <div
+    class="connection-status__bar"
+    [class.online]="status === 'connected'"
+    [class.offline]="status === 'disconnected'"
+  >connection status: {{ status }}
+  </div>
+</ng-container>

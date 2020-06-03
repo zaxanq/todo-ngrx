@@ -59,7 +59,6 @@ export class TodosComponent implements OnInit {
   }
 
   handleTodoRemove(removedTodo: Todo) {
-    console.log('todos:', removedTodo);
     this.store.dispatch(new fromStore.RemoveTodo(removedTodo));
   }
 }

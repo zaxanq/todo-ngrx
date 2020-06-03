@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   ElementRef,
@@ -17,7 +16,7 @@ import { Todo } from '../../models/todo.model';
   styleUrls: ['./todo.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TodoComponent implements OnInit, AfterViewInit {
+export class TodoComponent implements OnInit {
   @ViewChild('newMessageInput') newMessageInput: ElementRef;
 
   @Input()
@@ -35,9 +34,6 @@ export class TodoComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-  }
-
-  ngAfterViewInit(): void {
   }
 
   handleChange(event): void {

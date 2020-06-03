@@ -1,0 +1,27 @@
+:host {
+  width: 100%;
+}
+
+@keyframes fadeOut {
+  0%, 90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.connection-status__bar {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  &.online {
+    background-color: limegreen;
+    animation: 5s fadeOut linear forwards;
+  }
+
+  &.offline {
+    background-color: indianred;
+  }
+}
