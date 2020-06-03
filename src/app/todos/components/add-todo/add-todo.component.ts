@@ -26,7 +26,7 @@ export class AddTodoComponent implements OnInit {
   onSubmit() {
     this.newTodo = {
       id: (new Date()).getTime() + '',
-      message: this.form.value.message,
+      message: this.form.value.message.trim(),
       done: false,
     };
 

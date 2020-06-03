@@ -5,7 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -38,6 +38,7 @@ import { MatIconModule } from '@angular/material/icon';
     StoreModule.forFeature('todos', reducers),
     EffectsModule.forFeature(effects),
     MatIconModule,
+    FormsModule,
   ],
   exports: [
     TodosComponent,

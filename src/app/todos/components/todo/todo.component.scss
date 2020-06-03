@@ -12,7 +12,7 @@
     border-left-color: $todo-hover-indicator-color;
     cursor: pointer;
 
-    .todo__remove-button {
+    .todo__controls {
       opacity: 1;
       pointer-events: all;
     }
@@ -24,12 +24,18 @@
   margin: $todo-margin;
 }
 
-.todo__remove-button {
+.todo__controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.todo__button {
   $size: 3.2rem;
   width: $size;
   height: $size;
   line-height: $size;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease-in-out;
 }

@@ -26,7 +26,7 @@ export class TodosListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  handleUncheck(updatedTodo: Todo) {
+  handleUpdate(updatedTodo: Todo) {
     this.todoUpdated.emit(updatedTodo);
   }
 
