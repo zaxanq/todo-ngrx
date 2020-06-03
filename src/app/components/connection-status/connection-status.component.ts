@@ -9,6 +9,10 @@ import { Observable } from 'rxjs';
 })
 export class ConnectionStatusComponent implements OnInit {
   status$: Observable<string>;
+  notification = {
+    connected: 'everything looks fine',
+    disconnected: 'you can view the list, but changes will not be saved',
+  }
 
   constructor(private connectionService: ConnectionService) { }
 

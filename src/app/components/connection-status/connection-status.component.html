@@ -3,6 +3,6 @@
     class="connection-status__bar"
     [class.online]="status === 'connected'"
     [class.offline]="status === 'disconnected'"
-  >connection status: {{ status }}
+  >connection status: {{ status }} - {{ notification[status] }}
   </div>
 </ng-container>
