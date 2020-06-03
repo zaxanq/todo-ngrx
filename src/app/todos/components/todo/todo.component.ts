@@ -4,19 +4,20 @@ import {
   ElementRef,
   EventEmitter,
   Input,
-  OnInit,
   Output,
   ViewChild
 } from '@angular/core';
 import { Todo } from '../../models/todo.model';
 
+/* Single todo component displaying an note.
+  When hovered, shows controls such as Edit and Remove. */
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TodoComponent implements OnInit {
+export class TodoComponent {
   @ViewChild('newMessageInput') newMessageInput: ElementRef;
 
   @Input()
@@ -30,12 +31,7 @@ export class TodoComponent implements OnInit {
   isEdited = false;
   newMessage: string;
 
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
-
+  /* Reads current state of the checkbox on change event and sends updated todo to the parent component. */
   handleChange(event): void {
     if (!this.isEdited) {
       const updatedTodo = {
@@ -51,6 +47,8 @@ export class TodoComponent implements OnInit {
     this.remove.emit(removedTodo);
   }
 
+  /* Verifies if the new message is different from the previous one and not empty.
+    Then updates the Todo and sends it to the parent. */
   handleEdit(newMessageValue: string) {
     if (!newMessageValue.trim() || (newMessageValue.trim() === this.data.message)) {
       this.toggleEdit();
@@ -64,6 +62,8 @@ export class TodoComponent implements OnInit {
     this.update.emit(updatedTodo);
   }
 
+  /* Toggles between edit & view state of the message.
+    Focuses the input and populates it with current message value of the todo on edit state. */
   toggleEdit() {
     this.isEdited = !this.isEdited;
 

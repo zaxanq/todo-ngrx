@@ -7,6 +7,10 @@ import { Todo } from '../../models/todo.model';
 import { of } from 'rxjs';
 import { ConnectionService } from '../../services/connection.service';
 
+
+/* Each effect takes the dispatched action and communicates through service with API.
+  Dispatches new action depending on the result of the request.
+  ConnectionService decides what the state of connection is based on the reuslt of the request. */
 @Injectable()
 export class TodosEffect {
   @Effect()
@@ -65,6 +69,7 @@ export class TodosEffect {
     switchMap((todo: Todo) => this.todosService
       .removeTodo(todo)
       .pipe(
+        // 'DELETE' request doesn't return removed item so in this case we use the variable defined in the switchMap.
         map(() => new todoActions.RemoveTodoSuccess(todo)),
         catchError((error: any) => {
           this.connectionService.changeStatus('disconnected');
@@ -78,6 +83,5 @@ export class TodosEffect {
     private actions$: Actions,
     private todosService: TodosService,
     private connectionService: ConnectionService,
-  ) {
-  }
+  ) {}
 }

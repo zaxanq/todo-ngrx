@@ -14,7 +14,7 @@ import { reducers, effects } from './store';
 import { TodosComponent } from './containers/todos/todos.component';
 
 import { AddTodoComponent } from './components/add-todo/add-todo.component';
-import { TodosListComponent } from './components/todos-list/todos-list.component';
+import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { TodoComponent } from './components/todo/todo.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
@@ -23,7 +23,7 @@ import { MatIconModule } from '@angular/material/icon';
   declarations: [
     TodosComponent,
     AddTodoComponent,
-    TodosListComponent,
+    TodoListComponent,
     TodoComponent,
   ],
   imports: [

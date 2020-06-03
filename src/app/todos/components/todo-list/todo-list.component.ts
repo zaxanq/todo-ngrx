@@ -1,14 +1,16 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Status } from '../../enums/status.enum';
 import { Todo } from '../../models/todo.model';
 
+/* Displays list of todos passed as an Input, together with type (of type Status).
+  Responsible for communication between single todo component and todos container. */
 @Component({
-  selector: 'app-todos-list',
-  templateUrl: './todos-list.component.html',
-  styleUrls: ['./todos-list.component.scss'],
+  selector: 'app-todo-list',
+  templateUrl: './todo-list.component.html',
+  styleUrls: ['./todo-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TodosListComponent implements OnInit {
+export class TodoListComponent {
   @Input()
   type: Status.Todo | Status.Done;
   @Input()
@@ -20,12 +22,6 @@ export class TodosListComponent implements OnInit {
   @Output()
   todoRemoved: EventEmitter<Todo> = new EventEmitter<Todo>();
 
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
-
   handleUpdate(updatedTodo: Todo) {
     this.todoUpdated.emit(updatedTodo);
   }
@@ -33,5 +29,4 @@ export class TodosListComponent implements OnInit {
   handleRemove(removeTodo: Todo) {
     this.todoRemoved.emit(removeTodo);
   }
-
 }

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
+/* is responsible for passing data about status of the connection */
 @Injectable({
   providedIn: 'root'
 })

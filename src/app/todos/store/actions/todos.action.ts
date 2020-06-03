@@ -1,11 +1,13 @@
 import { Action } from '@ngrx/store';
 import { Todo } from '../../models/todo.model';
 
-// load todos
+/* load todos */
+// defining types of actions
 export const LOAD_TODOS = '[TODOS] Load Todos';
 export const LOAD_TODOS_FAIL = '[TODOS] Load Todos - Fail';
 export const LOAD_TODOS_SUCCESS = '[TODOS] Load Todos - Success';
 
+// creating actions
 export class LoadTodos implements Action {
   readonly type = LOAD_TODOS;
 }
@@ -13,22 +15,23 @@ export class LoadTodos implements Action {
 export class LoadTodosFail implements Action {
   readonly type = LOAD_TODOS_FAIL;
 
-  constructor(public payload: any) {
-  }
+  constructor(public payload: any) {}
 }
 
 export class LoadTodosSuccess implements Action {
   readonly type = LOAD_TODOS_SUCCESS;
 
-  constructor(public payload: Todo[]) {
-  }
+  constructor(public payload: Todo[]) {}
 }
 
-// create todo
+
+/* create todo */
+// defining types of actions
 export const CREATE_TODO = '[TODOS] Create Todo';
 export const CREATE_TODO_FAIL = '[TODOS] Create Todo - Fail';
 export const CREATE_TODO_SUCCESS = '[TODOS] Create Todo - Success';
 
+// creating actions
 export class CreateTodo implements Action {
   readonly type = CREATE_TODO;
   constructor(public payload: Todo) {}
@@ -44,11 +47,14 @@ export class CreateTodoSuccess implements Action {
   constructor(public payload: Todo) {}
 }
 
-// update todo
+
+/* update todo */
+// defining types of actions
 export const UPDATE_TODO = '[TODOS] Update Todo';
 export const UPDATE_TODO_FAIL = '[TODOS] Update Todo - Fail';
 export const UPDATE_TODO_SUCCESS = '[TODOS] Update Todo - Success';
 
+// creating actions
 export class UpdateTodo implements Action {
   readonly type = UPDATE_TODO;
   constructor(public payload: Todo) {}
@@ -64,11 +70,13 @@ export class UpdateTodoSuccess implements Action {
   constructor(public payload: Todo) {}
 }
 
-// remove todo
+/* remove todo */
+// defining types of actions
 export const REMOVE_TODO = '[TODOS] Remove Todo';
 export const REMOVE_TODO_FAIL = '[TODOS] Remove Todo - Fail';
 export const REMOVE_TODO_SUCCESS = '[TODOS] Remove Todo - Success';
 
+// creating actions
 export class RemoveTodo implements Action {
   readonly type = REMOVE_TODO;
   constructor(public payload: Todo) {}
@@ -86,15 +94,7 @@ export class RemoveTodoSuccess implements Action {
 
 // action types
 export type TodosAction =
-  LoadTodos |
-  LoadTodosFail |
-  LoadTodosSuccess |
-  CreateTodo |
-  CreateTodoFail |
-  CreateTodoSuccess |
-  UpdateTodo |
-  UpdateTodoFail |
-  UpdateTodoSuccess |
-  RemoveTodo |
-  RemoveTodoFail |
-  RemoveTodoSuccess;
+  LoadTodos | LoadTodosFail | LoadTodosSuccess |
+  CreateTodo | CreateTodoFail | CreateTodoSuccess |
+  UpdateTodo | UpdateTodoFail | UpdateTodoSuccess |
+  RemoveTodo | RemoveTodoFail | RemoveTodoSuccess;

@@ -5,10 +5,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
-
-import { AppComponent } from './app.component';
-import { TodosModule } from './todos/todos.module';
 import { environment } from '../environments/environment';
+
+import { TodosModule } from './todos/todos.module';
+import { AppComponent } from './app.component';
 import { ConnectionStatusComponent } from './components/connection-status/connection-status.component';
 
 @NgModule({
@@ -21,7 +21,7 @@ import { ConnectionStatusComponent } from './components/connection-status/connec
     BrowserAnimationsModule,
     TodosModule,
     StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({
+    StoreDevtoolsModule.instrument({ // ngrx devtools
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),

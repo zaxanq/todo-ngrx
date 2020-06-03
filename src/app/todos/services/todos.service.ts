@@ -5,6 +5,7 @@ import { Todo } from '../models/todo.model';
 
 const API_URL = '//localhost:3000';
 
+/* Helper service responsible for communication with the backend. */
 @Injectable({
   providedIn: 'root'
 })
