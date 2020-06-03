@@ -1,7 +1,9 @@
 @import '~src/styles/variables';
 
 :host {
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: $todo-padding;
   margin: $todo-margin;
   border-left: 4px solid transparent;
@@ -9,9 +11,25 @@
   &:hover {
     border-left-color: $todo-hover-indicator-color;
     cursor: pointer;
+
+    .todo__remove-button {
+      opacity: 1;
+      pointer-events: all;
+    }
   }
 }
 
 .todo__message {
+  width: 100%;
   margin: $todo-margin;
+}
+
+.todo__remove-button {
+  $size: 3.2rem;
+  width: $size;
+  height: $size;
+  line-height: $size;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
 }

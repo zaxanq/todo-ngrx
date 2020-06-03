@@ -17,6 +17,7 @@ import { AddTodoComponent } from './components/add-todo/add-todo.component';
 import { TodosListComponent } from './components/todos-list/todos-list.component';
 import { TodoComponent } from './components/todo/todo.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     StoreModule.forFeature('todos', reducers),
     EffectsModule.forFeature(effects),
+    MatIconModule,
   ],
   exports: [
     TodosComponent,

@@ -13,8 +13,8 @@ export class TodoComponent implements OnInit {
 
   @Output()
   uncheck: EventEmitter<Todo> = new EventEmitter<Todo>();
-
-  hover = false;
+  @Output()
+  remove: EventEmitter<Todo> = new EventEmitter<Todo>();
 
   constructor() {
   }
@@ -29,5 +29,9 @@ export class TodoComponent implements OnInit {
     };
 
     this.uncheck.emit(updatedTodo);
+  }
+
+  handleRemove(removedTodo: Todo) {
+    this.remove.emit(removedTodo);
   }
 }

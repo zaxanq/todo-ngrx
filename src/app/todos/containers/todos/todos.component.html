@@ -1,4 +1,14 @@
 <h1>To do list</h1>
 <app-add-todo (addTodo)="handleAddTodo($event)"></app-add-todo>
-<app-todos-list [list]="unfinishedNotes" [type]="'To do'" (listUpdated)="handleListUpdate($event)"></app-todos-list>
-<app-todos-list [list]="finishedNotes" [type]="'Done'" (listUpdated)="handleListUpdate($event)"></app-todos-list>
+<app-todos-list
+  [list]="unfinishedNotes$ | async"
+  [type]="'To do'"
+  (todoUpdated)="handleTodoUpdate($event)"
+  (todoRemoved)="handleTodoRemove($event)"
+></app-todos-list>
+<app-todos-list
+  [list]="finishedNotes$ | async"
+  [type]="'Done'"
+  (todoUpdated)="handleTodoUpdate($event)"
+  (todoRemoved)="handleTodoRemove($event)"
+></app-todos-list>

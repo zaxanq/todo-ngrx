@@ -3,3 +3,6 @@
   (change)="handleChange($event)"
   class="todo__message"
 >{{ data.message }}</mat-checkbox>
+<button mat-icon-button class="todo__remove-button" (click)="handleRemove(data)">
+  <mat-icon>delete</mat-icon>
+</button>

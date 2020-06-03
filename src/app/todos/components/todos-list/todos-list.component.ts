@@ -15,25 +15,23 @@ export class TodosListComponent implements OnInit {
   list: Todo[];
 
   @Output()
-  listUpdated: EventEmitter<{ list: Todo[], type: Status.Todo | Status.Done }>
-    = new EventEmitter<{ list: Todo[], type: Status.Todo | Status.Done }>();
+  todoUpdated: EventEmitter<Todo> = new EventEmitter<Todo>();
+
+  @Output()
+  todoRemoved: EventEmitter<Todo> = new EventEmitter<Todo>();
 
   constructor() {
   }
 
   ngOnInit(): void {
-    console.log(this.list);
   }
 
   handleUncheck(updatedTodo: Todo) {
-    const updatedList = this.list.map(
-      (todo) => todo.id === updatedTodo.id ? updatedTodo : todo
-    );
+    this.todoUpdated.emit(updatedTodo);
+  }
 
-    this.listUpdated.emit({
-      list: updatedList,
-      type: this.type,
-    });
+  handleRemove(removeTodo: Todo) {
+    this.todoRemoved.emit(removeTodo);
   }
 
 }

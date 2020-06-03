@@ -27,6 +27,7 @@ export function reducer(
 
     case fromTodos.LOAD_TODOS_SUCCESS: {
       const data = action.payload;
+      localStorage.setItem('data', JSON.stringify(data));
 
       return {
         ...state,
@@ -41,6 +42,42 @@ export function reducer(
         ...state,
         loading: false,
         loaded: false,
+      };
+    }
+
+    case fromTodos.CREATE_TODO_SUCCESS: {
+      const todo = action.payload;
+      const data = [
+        ...state.data,
+        todo,
+      ];
+      localStorage.setItem('data', JSON.stringify(data));
+
+      return {
+        ...state,
+        data,
+      };
+    }
+
+    case fromTodos.UPDATE_TODO_SUCCESS: {
+      const updatedTodo = action.payload;
+      const data = state.data.map((todo: Todo) => todo.id === updatedTodo.id ? updatedTodo : todo);
+      localStorage.setItem('data', JSON.stringify(data));
+
+      return {
+        ...state,
+        data,
+      };
+    }
+
+    case fromTodos.REMOVE_TODO_SUCCESS: {
+      const removedTodo = action.payload;
+      const data = state.data.filter((todo: Todo) => todo.id !== removedTodo.id);
+      localStorage.setItem('data', JSON.stringify(data));
+
+      return {
+        ...state,
+        data,
       };
     }
   }

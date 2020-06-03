@@ -24,5 +24,77 @@ export class LoadTodosSuccess implements Action {
   }
 }
 
+// create todo
+export const CREATE_TODO = '[TODOS] Create Todo';
+export const CREATE_TODO_FAIL = '[TODOS] Create Todo - Fail';
+export const CREATE_TODO_SUCCESS = '[TODOS] Create Todo - Success';
+
+export class CreateTodo implements Action {
+  readonly type = CREATE_TODO;
+  constructor(public payload: Todo) {}
+}
+
+export class CreateTodoFail implements Action {
+  readonly type = CREATE_TODO_FAIL;
+  constructor(public payload: any) {}
+}
+
+export class CreateTodoSuccess implements Action {
+  readonly type = CREATE_TODO_SUCCESS;
+  constructor(public payload: Todo) {}
+}
+
+// update todo
+export const UPDATE_TODO = '[TODOS] Update Todo';
+export const UPDATE_TODO_FAIL = '[TODOS] Update Todo - Fail';
+export const UPDATE_TODO_SUCCESS = '[TODOS] Update Todo - Success';
+
+export class UpdateTodo implements Action {
+  readonly type = UPDATE_TODO;
+  constructor(public payload: Todo) {}
+}
+
+export class UpdateTodoFail implements Action {
+  readonly type = UPDATE_TODO_FAIL;
+  constructor(public payload: any) {}
+}
+
+export class UpdateTodoSuccess implements Action {
+  readonly type = UPDATE_TODO_SUCCESS;
+  constructor(public payload: Todo) {}
+}
+
+// remove todo
+export const REMOVE_TODO = '[TODOS] Remove Todo';
+export const REMOVE_TODO_FAIL = '[TODOS] Remove Todo - Fail';
+export const REMOVE_TODO_SUCCESS = '[TODOS] Remove Todo - Success';
+
+export class RemoveTodo implements Action {
+  readonly type = REMOVE_TODO;
+  constructor(public payload: Todo) {}
+}
+
+export class RemoveTodoFail implements Action {
+  readonly type = REMOVE_TODO_FAIL;
+  constructor(public payload: any) {}
+}
+
+export class RemoveTodoSuccess implements Action {
+  readonly type = REMOVE_TODO_SUCCESS;
+  constructor(public payload: Todo) {}
+}
+
 // action types
-export type TodosAction = LoadTodos | LoadTodosFail | LoadTodosSuccess;
+export type TodosAction =
+  LoadTodos |
+  LoadTodosFail |
+  LoadTodosSuccess |
+  CreateTodo |
+  CreateTodoFail |
+  CreateTodoSuccess |
+  UpdateTodo |
+  UpdateTodoFail |
+  UpdateTodoSuccess |
+  RemoveTodo |
+  RemoveTodoFail |
+  RemoveTodoSuccess;

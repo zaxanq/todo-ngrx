@@ -20,6 +20,16 @@ export class TodosService {
 
   addTodo(payload: Todo): Observable<Todo> {
     return this.http
-      .post<Todo>(`${API_URL}`, payload);
+      .post<Todo>(`${API_URL}/todos`, payload);
+  }
+
+  updateTodo(payload: Todo): Observable<Todo> {
+    return this.http
+      .put<Todo>(`${API_URL}/todos/${ payload.id }`, payload);
+  }
+
+  removeTodo(payload: Todo): Observable<Todo> {
+    return this.http
+      .delete<Todo>(`${API_URL}/todos/${ payload.id }`);
   }
 }
