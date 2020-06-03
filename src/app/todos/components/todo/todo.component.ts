@@ -19,16 +19,6 @@ export class TodoComponent implements OnInit {
   constructor() {
   }
 
-  @HostListener('mouseenter')
-  onMouseEnter() {
-    this.hover = true;
-  }
-
-  @HostListener('mouseleave')
-  onMouseLeave() {
-    this.hover = false;
-  }
-
   ngOnInit(): void {
   }
 

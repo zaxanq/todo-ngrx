@@ -1,9 +1,11 @@
 import { Status } from '../../enums/status.enum';
-import { ChangeDetectionStrategy, Component, OnChanges, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 import * as fromStore from '../../store';
 import { Todo } from '../../models/todo.model';
+import { Observable, pipe } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-todos',
@@ -11,8 +13,8 @@ import { Todo } from '../../models/todo.model';
   styleUrls: ['./todos.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TodosComponent implements OnInit, OnChanges {
-  todoList: Todo[];
+export class TodosComponent implements OnInit {
+  todos$: Observable<Todo[]>;
 
   unfinishedNotes: Todo[] = [];
   finishedNotes: Todo[] = [];
@@ -21,46 +23,42 @@ export class TodosComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.store.select(fromStore.getAllTodos).subscribe(state => {
-      console.log(state);
-    });
+    this.todos$ = this.store.select(fromStore.getAllTodos);
 
-    this.divideList();
+    this.store.dispatch(new fromStore.LoadTodos());
+
+    this.divideTodos();
   }
 
-  ngOnChanges(): void {
-    this.divideList();
-  }
-
-  divideList(): void {
+  divideTodos(): void {
     const finishedNotes = [];
     const unfinishedNotes = [];
 
-    this.todoList?.map((note) => {
-      note.done
-        ? finishedNotes.push(note)
-        : unfinishedNotes.push(note);
-    });
-
-    this.finishedNotes = [...finishedNotes];
-    this.unfinishedNotes = [...unfinishedNotes];
+    this.todos$.pipe(
+      tap(_ => console.log('a', _)),
+      map(todos => todos.map(todo => todo.done ? finishedNotes.push(todo) : unfinishedNotes.push(todo))),
+      tap(() => {
+        this.finishedNotes = [...finishedNotes];
+        this.unfinishedNotes = [...unfinishedNotes];
+      })
+    ).subscribe();
   }
 
   handleAddTodo(newTodo: Todo) {
-    this.todoList = [...this.todoList, newTodo];
-    console.log(this.todoList);
+    //   this.todoList = [...this.todoList, newTodo];
+    //   console.log(this.todoList);
   }
 
   handleListUpdate(data: { list: Todo[], type: Status.Todo | Status.Done }) {
-    const originOfChange = data.type;
-    console.log(this.todoList);
-    this.todoList = [
-      ...this.todoList.filter(
-        (todo) => originOfChange === Status.Todo ? todo.done : !todo.done
-      ),
-      ...data.list,
-    ];
-
-    console.log(this.todoList);
+    //   const originOfChange = data.type;
+    //   console.log(this.todoList);
+    //   this.todoList = [
+    //     ...this.todoList.filter(
+    //       (todo) => originOfChange === Status.Todo ? todo.done : !todo.done
+    //     ),
+    //     ...data.list,
+    //   ];
+    //
+    //   console.log(this.todoList);
   }
 }

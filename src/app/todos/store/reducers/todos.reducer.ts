@@ -8,38 +8,7 @@ export interface TodoState {
 }
 
 export const initialState: TodoState = {
-  data: [
-    {
-      id: '1591095556956',
-      message: 'Eat pizza',
-      done: false
-    },
-    {
-      id: '1591095613835',
-      message: 'Work',
-      done: true
-    },
-    {
-      id: '1591095626046',
-      message: 'Watch a movie',
-      done: false
-    },
-    {
-      id: '1591095631377',
-      message: 'Brush teeth',
-      done: true
-    },
-    {
-      id: '1591095636291',
-      message: 'Read a book',
-      done: true
-    },
-    {
-      id: '1591095640846',
-      message: 'Sleep',
-      done: false
-    }
-  ],
+  data: [],
   loaded: false,
   loading: false,
 };
@@ -57,10 +26,13 @@ export function reducer(
     }
 
     case fromTodos.LOAD_TODOS_SUCCESS: {
+      const data = action.payload;
+
       return {
         ...state,
         loading: false,
         loaded: true,
+        data,
       };
     }
 

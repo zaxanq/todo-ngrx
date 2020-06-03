@@ -8,13 +8,15 @@ import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { StoreModule } from '@ngrx/store';
-import { reducers } from './store';
+import { EffectsModule } from '@ngrx/effects';
+import { reducers, effects } from './store';
 
 import { TodosComponent } from './containers/todos/todos.component';
 
 import { AddTodoComponent } from './components/add-todo/add-todo.component';
 import { TodosListComponent } from './components/todos-list/todos-list.component';
 import { TodoComponent } from './components/todo/todo.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,7 @@ import { TodoComponent } from './components/todo/todo.component';
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
     MatButtonModule,
     MatCardModule,
     MatCheckboxModule,
@@ -32,6 +35,7 @@ import { TodoComponent } from './components/todo/todo.component';
     MatInputModule,
     ReactiveFormsModule,
     StoreModule.forFeature('todos', reducers),
+    EffectsModule.forFeature(effects),
   ],
   exports: [
     TodosComponent,
