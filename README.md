@@ -1,10 +1,12 @@
-# TodoNgrx
+# TodoNgRx
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.7.
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+To start the mocked API server run `npm run api`. This will start the JSON-Server at `http://localhost:3000`. Database for the API is in `api/db.json`. 
 
 ## Code scaffolding
 
