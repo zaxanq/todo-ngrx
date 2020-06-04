@@ -1,6 +1,27 @@
 <mat-card>
   <mat-card-header>
-    <mat-card-title class="h4 todos-list__title">Stuff {{ type | lowercase }}</mat-card-title>
+    <mat-card-title>Stuff {{ type | lowercase }}</mat-card-title>
+    <div class="todo-list__controls">
+      <button
+        mat-button
+        class="todo-list__button--sort"
+        (click)="handleSortChange('date')"
+        color="primary"
+      >
+        <span> Sort by date</span>
+        <mat-icon>today</mat-icon>
+      </button>
+      <button
+        mat-button
+
+        class="todo-list__button--sort"
+        (click)="handleSortChange('message')"
+        color="primary"
+      >
+        <span> Sort by message</span>
+        <mat-icon>sort_by_alpha</mat-icon>
+      </button>
+    </div>
   </mat-card-header>
   <mat-card-content>
     <ng-container *ngFor="let item of list">

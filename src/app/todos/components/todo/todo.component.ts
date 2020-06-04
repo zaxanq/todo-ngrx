@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { Todo } from '../../models/todo.model';
+import { Order } from '../../models/order.model';
 
 /* Single todo component displaying an note.
   When hovered, shows controls such as Edit and Remove. */
@@ -14,6 +15,9 @@ export class TodoComponent {
 
   @Input()
   data: Todo;
+
+  @Input()
+  order: Order;
 
   @Output()
   update: EventEmitter<Todo> = new EventEmitter<Todo>();

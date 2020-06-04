@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import * as fromStore from '../../store';
 import { Todo } from '../../models/todo.model';
 import { Observable } from 'rxjs';
+import { Order } from '../../models/order.model';
 
 /* Container component responsible for communication with the Store. */
 @Component({
@@ -23,6 +24,10 @@ export class TodosComponent implements OnInit {
     this.finishedNotes$ = this.store.select(fromStore.getFinishedTodos).pipe();
     this.unfinishedNotes$ = this.store.select(fromStore.getUnfinishedTodos).pipe();
 
+    // 1. get current sort settings, pass it to todo-component
+    // 2. pass back new order on emitting from todo-component
+    // 3. update store
+
     this.store.dispatch(new fromStore.LoadTodos());
   }
 
@@ -36,5 +41,9 @@ export class TodosComponent implements OnInit {
 
   handleTodoRemove(removedTodo: Todo) {
     this.store.dispatch(new fromStore.RemoveTodo(removedTodo));
+  }
+
+  handleSortChange(newOrder: Order) {
+    this.store.dispatch(new fromStore.UpdateOrder(newOrder));
   }
 }

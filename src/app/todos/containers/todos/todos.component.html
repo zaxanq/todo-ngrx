@@ -5,10 +5,12 @@
   [type]="'To do'"
   (todoUpdated)="handleTodoUpdate($event)"
   (todoRemoved)="handleTodoRemove($event)"
+  (sortChange)="handleSortChange($event)"
 ></app-todo-list>
 <app-todo-list
   [list]="finishedNotes$ | async"
   [type]="'Done'"
   (todoUpdated)="handleTodoUpdate($event)"
   (todoRemoved)="handleTodoRemove($event)"
+  (sortChange)="handleSortChange($event)"
 ></app-todo-list>

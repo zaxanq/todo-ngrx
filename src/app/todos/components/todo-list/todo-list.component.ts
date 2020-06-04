@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Status } from '../../enums/status.enum';
 import { Todo } from '../../models/todo.model';
+import { Order } from '../../models/order.model';
 
 /* Displays list of todos passed as an Input, together with type (of type Status).
   Responsible for communication between single todo component and todos container. */
@@ -16,11 +17,17 @@ export class TodoListComponent {
   @Input()
   list: Todo[];
 
+  @Input()
+  sortDesc: string;
+
   @Output()
   todoUpdated: EventEmitter<Todo> = new EventEmitter<Todo>();
 
   @Output()
   todoRemoved: EventEmitter<Todo> = new EventEmitter<Todo>();
+
+  @Output()
+  sortChange: EventEmitter<Order> = new EventEmitter<Order>();
 
   handleUpdate(updatedTodo: Todo) {
     this.todoUpdated.emit(updatedTodo);
@@ -33,5 +40,9 @@ export class TodoListComponent {
   isOverdue(todo: Todo, oldAfterHours: number = 8): boolean {
     const isTodoOld = ((new Date().getTime()) - +todo.id) / 1000 > oldAfterHours * 3600;
     return isTodoOld && !todo.done;
+  }
+
+  handleSortChange(sortBy: string) {
+    this.sortChange.emit({sortBy, list: this.type});
   }
 }

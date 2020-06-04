@@ -1,7 +1,6 @@
 import { createSelector } from '@ngrx/store';
 
 import * as fromFeature from '../reducers';
-import * as fromTodos from '../reducers/todos.reducer';
 import { TodoState } from '../reducers/todos.reducer';
 
 // selectors to get only a part of state

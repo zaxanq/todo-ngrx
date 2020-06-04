@@ -14,6 +14,17 @@
   }
 }
 
-.todos-list__title {
+.mat-card-header {
+  align-items: center;
   margin-bottom: 0.5rem;
+
+  .mat-card-title {
+    margin-bottom: 0;
+  }
+}
+
+.todo-list__controls {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
