@@ -3,12 +3,22 @@
     <mat-card-title class="h4 todos-list__title">Stuff {{ type | lowercase }}</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <app-todo
-      *ngFor="let item of list"
-      [data]="item"
-      (update)="handleUpdate($event)"
-      (remove)="handleRemove($event)"
-      class="todo"
-    ></app-todo>
+    <ng-container *ngFor="let item of list">
+      <app-todo
+        *ngIf="isOverdue(item)"
+        [data]="item"
+        (update)="handleUpdate($event)"
+        (remove)="handleRemove($event)"
+        class="todo"
+        appOverdueTodo
+      ></app-todo>
+      <app-todo
+        *ngIf="!isOverdue(item)"
+        [data]="item"
+        (update)="handleUpdate($event)"
+        (remove)="handleRemove($event)"
+        class="todo"
+      ></app-todo>
+    </ng-container>
   </mat-card-content>
 </mat-card>

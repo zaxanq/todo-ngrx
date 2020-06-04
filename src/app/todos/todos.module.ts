@@ -18,6 +18,7 @@ import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { TodoComponent } from './components/todo/todo.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
+import { OverdueTodoDirective } from './directives/overdue-todo.directive';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MatIconModule } from '@angular/material/icon';
     AddTodoComponent,
     TodoListComponent,
     TodoComponent,
+    OverdueTodoDirective,
   ],
   imports: [
     CommonModule,

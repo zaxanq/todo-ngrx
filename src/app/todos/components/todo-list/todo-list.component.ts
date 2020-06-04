@@ -29,4 +29,9 @@ export class TodoListComponent {
   handleRemove(removeTodo: Todo) {
     this.todoRemoved.emit(removeTodo);
   }
+
+  isOverdue(todo: Todo, oldAfterHours: number = 8): boolean {
+    const isTodoOld = ((new Date().getTime()) - +todo.id) / 1000 > oldAfterHours * 3600;
+    return isTodoOld && !todo.done;
+  }
 }

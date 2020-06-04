@@ -3,32 +3,32 @@
     {
       "id": "1591095556956",
       "message": "Eat pizza",
-      "done": false
+      "done": true
     },
     {
       "id": "1591095613835",
       "message": "Work",
-      "done": false
-    },
-    {
-      "id": "1591095626046",
-      "message": "Watch a tv series",
-      "done": false
+      "done": true
     },
     {
       "id": "1591095631377",
       "message": "Brush teeth",
-      "done": false
+      "done": true
     },
     {
       "id": "1591095636291",
       "message": "Read a book",
-      "done": true
+      "done": false
     },
     {
       "id": "1591095640846",
       "message": "Sleep",
-      "done": true
+      "done": false
+    },
+    {
+      "id": "1591270162700",
+      "message": "Do laundry",
+      "done": false
     }
   ]
 }

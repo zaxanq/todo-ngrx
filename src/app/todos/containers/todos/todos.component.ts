@@ -4,7 +4,6 @@ import { Store } from '@ngrx/store';
 import * as fromStore from '../../store';
 import { Todo } from '../../models/todo.model';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 /* Container component responsible for communication with the Store. */
 @Component({

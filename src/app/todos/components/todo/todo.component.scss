@@ -17,6 +17,19 @@
       pointer-events: all;
     }
   }
+
+  &.todo--overdue {
+    position: relative;
+    background-color: map-get($mat-red, 50);
+
+    &::after {
+      content: '!';
+      position: absolute;
+      left: 0;
+      font-size: 2rem;
+      color: map-get($mat-red, 500);
+    }
+  }
 }
 
 .todo__message {

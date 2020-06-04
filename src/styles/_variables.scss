@@ -8,9 +8,10 @@ $add-todo-margin-left: 2rem;
 
 $todos-list-gap: 4rem;
 
-$todo-padding-vertical: 0.8rem;
+$todo-padding-vertical: 0.5rem;
+$todo-margin-vertical: 0.2rem;
 $todo-margin-horizontal: 1.2rem;
 $todo-padding: $todo-padding-vertical 0;
-$todo-margin: 0 $todo-margin-horizontal;
-$todo-border-bottom: 1px solid #ddd;
+$todo-margin: $todo-margin-vertical $todo-margin-horizontal;
+$todo-border-bottom: 1px solid #ccc;
 $todo-hover-indicator-color: map-get($primary, 300);
