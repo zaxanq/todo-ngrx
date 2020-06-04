@@ -105,7 +105,3 @@ export function reducer(
   return state;
 }
 
-// export parts of the state
-export const getTodosLoading = (state: TodoState) => state.loading;
-export const getTodosLoaded = (state: TodoState) => state.loaded;
-export const getTodos = (state: TodoState) => state.data;

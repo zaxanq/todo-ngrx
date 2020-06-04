@@ -14,8 +14,6 @@ import { map } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TodosComponent implements OnInit {
-  todos$: Observable<Todo[]>;
-
   unfinishedNotes$: Observable<Todo[]>;
   finishedNotes$: Observable<Todo[]>;
 
@@ -23,17 +21,10 @@ export class TodosComponent implements OnInit {
 
   /* On initialization get list of Todos, dispatch an action to load them and prepare them for todo-list components. */
   ngOnInit(): void {
-    this.todos$ = this.store.select(fromStore.getAllTodos).pipe();
+    this.finishedNotes$ = this.store.select(fromStore.getFinishedTodos).pipe();
+    this.unfinishedNotes$ = this.store.select(fromStore.getUnfinishedTodos).pipe();
+
     this.store.dispatch(new fromStore.LoadTodos());
-
-    this.divideTodos();
-  }
-
-  /* Creates two new observables out of todos$ observable for both finished and unfinished notes.
-    These are then passed to be displayed in todo-list components. */
-  divideTodos(): void {
-    this.finishedNotes$ = this.todos$.pipe(map((todos: Todo[]) => todos.filter((todo: Todo) => todo.done)));
-    this.unfinishedNotes$ = this.todos$.pipe(map((todos: Todo[]) => todos.filter((todo: Todo) => !todo.done)));
   }
 
   handleAddTodo(newTodo: Todo) {
