@@ -4,34 +4,13 @@ import { Todo } from '../../models/todo.model';
 // declare a state model
 export interface TodoState {
   data: Todo[];
-  order: OrderState;
   loaded: boolean;
   loading: boolean;
-}
-
-export interface OrderState {
-  finished: ListOrderState;
-  unfinished: ListOrderState;
-}
-
-export interface ListOrderState {
-  sortBy: 'date' | 'message';
-  order: 'asc' | 'desc';
 }
 
 // declare an empty state
 export const initialState: TodoState = {
   data: [],
-  order: {
-    finished: {
-      sortBy: 'date',
-      order: 'desc',
-    },
-    unfinished: {
-      sortBy: 'date',
-      order: 'desc',
-    },
-  },
   loaded: false,
   loading: false,
 };
@@ -60,7 +39,7 @@ export function reducer(
         ...state,
         loading: false,
         loaded: true,
-        ...data,
+        data,
       };
     }
 
@@ -120,11 +99,6 @@ export function reducer(
         ...state,
         data,
       };
-    }
-
-    case fromTodos.UPDATE_ORDER_SUCCESS: {
-      const orderData = action.payload;
-      console.log(orderData);
     }
   }
 

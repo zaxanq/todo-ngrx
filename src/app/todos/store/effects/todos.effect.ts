@@ -6,7 +6,6 @@ import { TodosService } from '../../services/todos.service';
 import { Todo } from '../../models/todo.model';
 import { of } from 'rxjs';
 import { ConnectionService } from '../../services/connection.service';
-import { Order } from '../../models/order.model';
 
 
 /* Each effect takes the dispatched action and communicates through service with API.
@@ -79,22 +78,6 @@ export class TodosEffect {
       )
     )
   );
-
-  // @Effect()
-  // updateOrder$ = this.actions$.pipe(
-  //   ofType(todoActions.UPDATE_ORDER),
-  //   map((action: todoActions.UpdateOrder) => action.payload),
-  //   switchMap((order: Order) => this.todosService
-  //     .updateOrder(order)
-  //     .pipe(
-  //       map((updatedOrder: Order) => new todoActions.UpdateOrder(updatedOrder)),
-  //       catchError((error: any) => {
-  //         this.connectionService.changeStatus('disconnected');
-  //         return of(new todoActions.RemoveTodoFail(error));
-  //       })
-  //     )
-  //   )
-  // );
 
   constructor(
     private actions$: Actions,

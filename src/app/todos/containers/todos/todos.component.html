@@ -2,6 +2,7 @@
 <app-add-todo (addTodo)="handleAddTodo($event)"></app-add-todo>
 <app-todo-list
   [list]="unfinishedNotes$ | async"
+  [order]="unfinishedOrder$ | async"
   [type]="'To do'"
   (todoUpdated)="handleTodoUpdate($event)"
   (todoRemoved)="handleTodoRemove($event)"
@@ -9,6 +10,7 @@
 ></app-todo-list>
 <app-todo-list
   [list]="finishedNotes$ | async"
+  [order]="finishedOrder$ | async"
   [type]="'Done'"
   (todoUpdated)="handleTodoUpdate($event)"
   (todoRemoved)="handleTodoRemove($event)"

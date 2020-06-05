@@ -16,6 +16,8 @@ export class TodoListComponent {
   type: Status.Todo | Status.Done;
   @Input()
   list: Todo[];
+  @Input()
+  order: Order;
 
   @Input()
   sortDesc: string;
@@ -42,7 +44,19 @@ export class TodoListComponent {
     return isTodoOld && !todo.done;
   }
 
-  handleSortChange(sortBy: string) {
-    this.sortChange.emit({sortBy, list: this.type});
+  handleSortChange(sortBy: 'message' | 'date') {
+    console.log('currentOrder:', this.order);
+    let newOrderProperty: 'asc' | 'desc';
+    if (this.order.sortBy !== sortBy || this.order.order === 'asc') {
+      newOrderProperty = 'desc'; // always set to 'descending' on sortBy change or when order was 'ascending'
+    } else {
+      newOrderProperty = 'asc'; // otherwise set to 'ascending'
+    }
+
+    this.sortChange.emit({ sortBy, order: newOrderProperty, list: this.type });
   }
 }
+
+// sortBy: date, order: desc
+// sortBy: date, order: asc
+// sortBy: message, order: asc

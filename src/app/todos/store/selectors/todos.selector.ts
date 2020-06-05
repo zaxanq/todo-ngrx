@@ -9,8 +9,8 @@ export const getTodosState = createSelector(
   (state: fromFeature.TodoState) => state.todos,
 );
 
-export const getAllTodos = createSelector(getTodosState, (state: TodoState) => state.loading);
+export const getAllTodos = createSelector(getTodosState, (state: TodoState) => state.data);
 export const getFinishedTodos = createSelector(getTodosState, (state: TodoState) => state.data.filter(todo => todo.done));
 export const getUnfinishedTodos = createSelector(getTodosState, (state: TodoState) => state.data.filter(todo => !todo.done));
 export const getTodosLoaded = createSelector(getTodosState, (state: TodoState) => state.loaded);
-export const getTodosLoading = createSelector(getTodosState, (state: TodoState) => state.data);
+export const getTodosLoading = createSelector(getTodosState, (state: TodoState) => state.loading);
