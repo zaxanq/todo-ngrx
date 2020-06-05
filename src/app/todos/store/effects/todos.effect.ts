@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import * as todoActions from '../actions/todos.action';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
-import { TodosService } from '../../services/todos.service';
-import { Todo } from '../../models/todo.model';
 import { of } from 'rxjs';
+import { TodosService } from '../../services/todos.service';
 import { ConnectionService } from '../../services/connection.service';
+import { Todo } from '../../models/todo.model';
+import { Order } from '../../models/order.model';
 
 
 /* Each effect takes the dispatched action and communicates through service with API.
@@ -36,7 +37,10 @@ export class TodosEffect {
       .addTodo(todo)
       .pipe(
         tap(() => { this.connectionService.changeStatus('connected'); }),
-        map((newTodo: Todo) => new todoActions.CreateTodoSuccess(newTodo)),
+        switchMap((newTodo: Todo) => [
+          new todoActions.CreateTodoSuccess(newTodo),
+          new todoActions.LoadTodos(),
+        ]),
         catchError((error: any) => {
           this.connectionService.changeStatus('disconnected');
           return of(new todoActions.CreateTodoFail(error));
@@ -53,7 +57,10 @@ export class TodosEffect {
       .updateTodo(todo)
       .pipe(
         tap(() => { this.connectionService.changeStatus('connected'); }),
-        map((updatedTodo: Todo) => new todoActions.UpdateTodoSuccess(updatedTodo)),
+        switchMap((updatedTodo: Todo) => [
+          new todoActions.UpdateTodoSuccess(updatedTodo),
+          new todoActions.LoadTodos(),
+        ]),
         catchError((error: any) => {
           this.connectionService.changeStatus('disconnected');
           return of(new todoActions.UpdateTodoFail(error));
@@ -70,13 +77,30 @@ export class TodosEffect {
       .removeTodo(todo)
       .pipe(
         // 'DELETE' request doesn't return removed item so in this case we use the variable defined in the switchMap.
-        map(() => new todoActions.RemoveTodoSuccess(todo)),
+        switchMap(() => [
+          new todoActions.RemoveTodoSuccess(todo),
+          new todoActions.LoadTodos(),
+        ]),
         catchError((error: any) => {
           this.connectionService.changeStatus('disconnected');
           return of(new todoActions.RemoveTodoFail(error));
         })
       )
     )
+  );
+
+  @Effect()
+  updateOrder$ = this.actions$.pipe(
+    ofType(todoActions.UPDATE_ORDER),
+    map((action: todoActions.UpdateOrder) => action.payload),
+    switchMap((updatedOrder: Order) => [
+      new todoActions.UpdateOrderSuccess(updatedOrder),
+      new todoActions.LoadTodos(),
+    ]),
+    catchError((error: any) => {
+      this.connectionService.changeStatus('disconnected');
+      return of(new todoActions.UpdateOrderFail(error));
+    })
   );
 
   constructor(

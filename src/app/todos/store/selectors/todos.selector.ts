@@ -14,3 +14,5 @@ export const getFinishedTodos = createSelector(getTodosState, (state: TodoState)
 export const getUnfinishedTodos = createSelector(getTodosState, (state: TodoState) => state.data.filter(todo => !todo.done));
 export const getTodosLoaded = createSelector(getTodosState, (state: TodoState) => state.loaded);
 export const getTodosLoading = createSelector(getTodosState, (state: TodoState) => state.loading);
+export const getUnfinishedTodosOrder = createSelector(getTodosState, (state: TodoState) => state.order.unfinished);
+export const getFinishedTodosOrder = createSelector(getTodosState, (state: TodoState) => state.order.finished);

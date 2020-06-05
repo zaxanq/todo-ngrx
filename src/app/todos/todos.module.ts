@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { effects, orderReducers, todosReducers } from './store';
+import { effects, reducers } from './store';
 
 import { TodosComponent } from './containers/todos/todos.component';
 
@@ -37,8 +37,7 @@ import { OverdueTodoDirective } from './directives/overdue-todo.directive';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    StoreModule.forFeature('todos', todosReducers),
-    StoreModule.forFeature('order', orderReducers),
+    StoreModule.forFeature('todos', reducers),
     EffectsModule.forFeature(effects),
     MatIconModule,
     FormsModule,

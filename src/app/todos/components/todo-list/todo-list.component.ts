@@ -19,9 +19,6 @@ export class TodoListComponent {
   @Input()
   order: Order;
 
-  @Input()
-  sortDesc: string;
-
   @Output()
   todoUpdated: EventEmitter<Todo> = new EventEmitter<Todo>();
 
@@ -56,7 +53,3 @@ export class TodoListComponent {
     this.sortChange.emit({ sortBy, order: newOrderProperty, list: this.type });
   }
 }
-
-// sortBy: date, order: desc
-// sortBy: date, order: asc
-// sortBy: message, order: asc

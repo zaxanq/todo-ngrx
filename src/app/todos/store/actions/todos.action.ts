@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Todo } from '../../models/todo.model';
+import { Order } from '../../models/order.model';
 
 /* load todos */
 // defining types of actions
@@ -90,10 +91,32 @@ export class RemoveTodoSuccess implements Action {
   constructor(public payload: Todo) {}
 }
 
+/* sorting of todos */
+// defining types of actions
+export const UPDATE_ORDER = '[SORT] Update order';
+export const UPDATE_ORDER_FAIL = '[SORT] Update order - Fail';
+export const UPDATE_ORDER_SUCCESS = '[SORT] Update order - Success';
+
+// creating actions
+export class UpdateOrder implements Action {
+  readonly type = UPDATE_ORDER;
+  constructor(public payload: Order) {}
+}
+
+export class UpdateOrderFail implements Action {
+  readonly type = UPDATE_ORDER_FAIL;
+  constructor(public payload: any) {}
+}
+
+export class UpdateOrderSuccess implements Action {
+  readonly type = UPDATE_ORDER_SUCCESS;
+  constructor(public payload: Order) {}
+}
 
 // action types
 export type TodosAction =
   LoadTodos | LoadTodosFail | LoadTodosSuccess |
   CreateTodo | CreateTodoFail | CreateTodoSuccess |
   UpdateTodo | UpdateTodoFail | UpdateTodoSuccess |
-  RemoveTodo | RemoveTodoFail | RemoveTodoSuccess;
+  RemoveTodo | RemoveTodoFail | RemoveTodoSuccess |
+  UpdateOrder | UpdateOrderFail | UpdateOrderSuccess;

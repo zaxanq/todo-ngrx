@@ -5,6 +5,7 @@ import * as fromStore from '../../store';
 import { Todo } from '../../models/todo.model';
 import { Observable } from 'rxjs';
 import { Order } from '../../models/order.model';
+import { tap } from 'rxjs/operators';
 
 /* Container component responsible for communication with the Store. */
 @Component({
@@ -27,9 +28,6 @@ export class TodosComponent implements OnInit {
     this.unfinishedNotes$ = this.store.select(fromStore.getUnfinishedTodos).pipe();
     this.finishedOrder$ = this.store.select(fromStore.getFinishedTodosOrder).pipe();
     this.unfinishedOrder$ = this.store.select(fromStore.getUnfinishedTodosOrder).pipe();
-    // 1. get current sort settings, pass it to todo-component
-    // 2. pass back new order on emitting from todo-component
-    // 3. update store
 
     this.store.dispatch(new fromStore.LoadTodos());
   }
