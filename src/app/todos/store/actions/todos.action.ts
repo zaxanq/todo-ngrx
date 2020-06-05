@@ -93,23 +93,23 @@ export class RemoveTodoSuccess implements Action {
 
 /* sorting of todos */
 // defining types of actions
-export const UPDATE_ORDER = '[SORT] Update order';
-export const UPDATE_ORDER_FAIL = '[SORT] Update order - Fail';
-export const UPDATE_ORDER_SUCCESS = '[SORT] Update order - Success';
+export const UPDATE_ORDER_SETTINGS = '[SORT] Update order settings';
+export const UPDATE_ORDER_SETTINGS_FAIL = '[SORT] Update order settings - Fail';
+export const UPDATE_ORDER_SETTINGS_SUCCESS = '[SORT] Update order settings - Success';
 
 // creating actions
-export class UpdateOrder implements Action {
-  readonly type = UPDATE_ORDER;
+export class UpdateOrderSettings implements Action {
+  readonly type = UPDATE_ORDER_SETTINGS;
   constructor(public payload: Order) {}
 }
 
-export class UpdateOrderFail implements Action {
-  readonly type = UPDATE_ORDER_FAIL;
+export class UpdateOrderSettingsFail implements Action {
+  readonly type = UPDATE_ORDER_SETTINGS_FAIL;
   constructor(public payload: any) {}
 }
 
-export class UpdateOrderSuccess implements Action {
-  readonly type = UPDATE_ORDER_SUCCESS;
+export class UpdateOrderSettingsSuccess implements Action {
+  readonly type = UPDATE_ORDER_SETTINGS_SUCCESS;
   constructor(public payload: Order) {}
 }
 
@@ -119,4 +119,4 @@ export type TodosAction =
   CreateTodo | CreateTodoFail | CreateTodoSuccess |
   UpdateTodo | UpdateTodoFail | UpdateTodoSuccess |
   RemoveTodo | RemoveTodoFail | RemoveTodoSuccess |
-  UpdateOrder | UpdateOrderFail | UpdateOrderSuccess;
+  UpdateOrderSettings | UpdateOrderSettingsFail | UpdateOrderSettingsSuccess;

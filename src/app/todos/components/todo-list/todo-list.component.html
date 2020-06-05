@@ -5,7 +5,7 @@
       <button
         mat-button
         class="todo-list__button--sort"
-        (click)="handleSortChange('date')"
+        (click)="handleSortChange(sortByDate)"
         color="primary"
       >
         <span> Sort by date</span>
@@ -15,7 +15,7 @@
         mat-button
 
         class="todo-list__button--sort"
-        (click)="handleSortChange('message')"
+        (click)="handleSortChange(sortByMessage)"
         color="primary"
       >
         <span> Sort by message</span>

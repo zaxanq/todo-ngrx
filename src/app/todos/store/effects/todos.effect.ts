@@ -90,16 +90,16 @@ export class TodosEffect {
   );
 
   @Effect()
-  updateOrder$ = this.actions$.pipe(
-    ofType(todoActions.UPDATE_ORDER),
-    map((action: todoActions.UpdateOrder) => action.payload),
+  updateOrderSettings$ = this.actions$.pipe(
+    ofType(todoActions.UPDATE_ORDER_SETTINGS),
+    map((action: todoActions.UpdateOrderSettings) => action.payload),
     switchMap((updatedOrder: Order) => [
-      new todoActions.UpdateOrderSuccess(updatedOrder),
+      new todoActions.UpdateOrderSettingsSuccess(updatedOrder),
       new todoActions.LoadTodos(),
     ]),
     catchError((error: any) => {
       this.connectionService.changeStatus('disconnected');
-      return of(new todoActions.UpdateOrderFail(error));
+      return of(new todoActions.UpdateOrderSettingsFail(error));
     })
   );
 

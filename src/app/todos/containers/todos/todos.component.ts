@@ -45,6 +45,6 @@ export class TodosComponent implements OnInit {
   }
 
   handleSortChange(newOrder: Order) {
-    this.store.dispatch(new fromStore.UpdateOrder(newOrder));
+    this.store.dispatch(new fromStore.UpdateOrderSettings(newOrder));
   }
 }
