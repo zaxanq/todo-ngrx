@@ -12,7 +12,7 @@ export class ConnectionService {
   constructor() {
   }
 
-  changeStatus(status: string) {
+  changeStatus(status: string): void {
     this.onlineStatus.next(status);
   }
 }

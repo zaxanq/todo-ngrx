@@ -32,7 +32,7 @@ export class AddTodoComponent implements OnInit {
 
   /* Create new Todo object with message from the input. Current timestamp in a form of string will serve as an id.
     Each new todo is not finished by default. */
-  onSubmit() {
+  onSubmit(): void {
     this.newTodo = {
       id: (new Date()).getTime().toString(),
       message: this.form.value.message.trim(),

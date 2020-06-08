@@ -23,10 +23,8 @@ export class TodoListComponent {
 
   @Output()
   todoUpdated: EventEmitter<Todo> = new EventEmitter<Todo>();
-
   @Output()
   todoRemoved: EventEmitter<Todo> = new EventEmitter<Todo>();
-
   @Output()
   sortChange: EventEmitter<Order> = new EventEmitter<Order>();
 
@@ -41,8 +39,8 @@ export class TodoListComponent {
     this.todoRemoved.emit(removeTodo);
   }
 
-  handleSortChange(sortBy: SortBy.date | SortBy.message): void {
-    let newOrderProperty: OrderEnum.asc | OrderEnum.desc;
+  handleSortChange(sortBy: SortBy): void {
+    let newOrderProperty: OrderEnum;
 
     if (this.order.sortBy !== sortBy || this.order.order === OrderEnum.asc) {
       newOrderProperty = OrderEnum.desc; // always set to 'descending' on sortBy change or when order was 'ascending'

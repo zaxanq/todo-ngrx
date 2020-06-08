@@ -15,7 +15,6 @@ export class TodoComponent {
 
   @Input()
   task: Todo;
-
   @Input()
   order: Order;
 
@@ -28,7 +27,7 @@ export class TodoComponent {
   newMessage: string;
 
   /* Reads current state of the checkbox on change event and sends updated todo to the parent component. */
-  handleChange(event): void {
+  handleChange(event: any): void {
     if (!this.isEdited) {
       const updatedTodo = {
         ...this.task,
@@ -39,13 +38,13 @@ export class TodoComponent {
     }
   }
 
-  handleRemove(removedTodo: Todo) {
+  handleRemove(removedTodo: Todo): void {
     this.remove.emit(removedTodo);
   }
 
   /* Verifies if the new message is different from the previous one and not empty.
     Then updates the Todo and sends it to the parent. */
-  handleEdit(newMessageValue: string) {
+  handleEdit(newMessageValue: string): void {
     if (!newMessageValue.trim() || (newMessageValue.trim() === this.task.message)) {
       this.toggleEdit();
       return;
@@ -60,7 +59,7 @@ export class TodoComponent {
 
   /* Toggles between edit & view state of the message.
     Focuses the input and populates it with current message value of the todo on edit state. */
-  toggleEdit() {
+  toggleEdit(): void {
     this.isEdited = !this.isEdited;
 
     if (this.isEdited) {

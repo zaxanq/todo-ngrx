@@ -5,7 +5,6 @@ import * as fromStore from '../../store';
 import { Todo } from '../../models/todo.model';
 import { Observable } from 'rxjs';
 import { Order } from '../../models/order.model';
-import { tap } from 'rxjs/operators';
 
 /* Container component responsible for communication with the Store. */
 @Component({
@@ -32,19 +31,19 @@ export class TodosComponent implements OnInit {
     this.store.dispatch(new fromStore.LoadTodos());
   }
 
-  handleAddTodo(newTodo: Todo) {
+  handleAddTodo(newTodo: Todo): void {
     this.store.dispatch(new fromStore.CreateTodo(newTodo));
   }
 
-  handleTodoUpdate(updatedTodo: Todo) {
+  handleTodoUpdate(updatedTodo: Todo): void {
     this.store.dispatch(new fromStore.UpdateTodo(updatedTodo));
   }
 
-  handleTodoRemove(removedTodo: Todo) {
+  handleTodoRemove(removedTodo: Todo): void {
     this.store.dispatch(new fromStore.RemoveTodo(removedTodo));
   }
 
-  handleSortChange(newOrder: Order) {
+  handleSortChange(newOrder: Order): void {
     this.store.dispatch(new fromStore.UpdateOrderSettings(newOrder));
   }
 }
