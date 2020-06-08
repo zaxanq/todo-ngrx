@@ -14,7 +14,7 @@ export class TodoComponent {
   @ViewChild('newMessageInput') newMessageInput: ElementRef;
 
   @Input()
-  data: Todo;
+  task: Todo;
 
   @Input()
   order: Order;
@@ -31,7 +31,7 @@ export class TodoComponent {
   handleChange(event): void {
     if (!this.isEdited) {
       const updatedTodo = {
-        ...this.data,
+        ...this.task,
         done: event.checked,
       };
 
@@ -46,13 +46,13 @@ export class TodoComponent {
   /* Verifies if the new message is different from the previous one and not empty.
     Then updates the Todo and sends it to the parent. */
   handleEdit(newMessageValue: string) {
-    if (!newMessageValue.trim() || (newMessageValue.trim() === this.data.message)) {
+    if (!newMessageValue.trim() || (newMessageValue.trim() === this.task.message)) {
       this.toggleEdit();
       return;
     }
 
     const updatedTodo = {
-      ...this.data,
+      ...this.task,
       message: newMessageValue,
     };
     this.update.emit(updatedTodo);
@@ -64,7 +64,7 @@ export class TodoComponent {
     this.isEdited = !this.isEdited;
 
     if (this.isEdited) {
-      this.newMessage = this.data.message;
+      this.newMessage = this.task.message;
 
       setTimeout(() => {
         this.newMessageInput.nativeElement.focus();

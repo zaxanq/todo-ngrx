@@ -8,12 +8,12 @@ export const sort = (a: Todo, b: Todo, list: Order): number => {
     if (list.sortBy === SortBy.date) {
       return a.id < b.id ? 1 : -1;
     }
-    return a.message < b.message ? 1 : -1;
+    return a.message.toLowerCase() < b.message.toLowerCase() ? 1 : -1;
   } else if (list.order === OrderEnum.desc) {
     if (list.sortBy === SortBy.date) {
       return a.id > b.id ? 1 : -1;
     }
-    return a.message > b.message ? 1 : -1;
+    return a.message.toLowerCase() > b.message.toLowerCase() ? 1 : -1;
   }
   return -1;
 };

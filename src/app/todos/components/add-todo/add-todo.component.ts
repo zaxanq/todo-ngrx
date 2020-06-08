@@ -34,7 +34,7 @@ export class AddTodoComponent implements OnInit {
     Each new todo is not finished by default. */
   onSubmit() {
     this.newTodo = {
-      id: (new Date()).getTime() + '',
+      id: (new Date()).getTime().toString(),
       message: this.form.value.message.trim(),
       done: false,
     };

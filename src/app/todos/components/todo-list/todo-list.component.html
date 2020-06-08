@@ -24,22 +24,13 @@
     </div>
   </mat-card-header>
   <mat-card-content>
-    <ng-container *ngFor="let item of list">
-      <app-todo
-        *ngIf="isOverdue(item)"
-        [data]="item"
-        (update)="handleUpdate($event)"
-        (remove)="handleRemove($event)"
-        class="todo"
-        appOverdueTodo
-      ></app-todo>
-      <app-todo
-        *ngIf="!isOverdue(item)"
-        [data]="item"
-        (update)="handleUpdate($event)"
-        (remove)="handleRemove($event)"
-        class="todo"
-      ></app-todo>
-    </ng-container>
+    <app-todo
+      *ngFor="let item of list"
+      [task]="item"
+      (update)="handleUpdate($event)"
+      (remove)="handleRemove($event)"
+      class="todo"
+      appOverdueTodo
+    ></app-todo>
   </mat-card-content>
 </mat-card>
