@@ -34,7 +34,7 @@ export class AddTodoComponent implements OnInit {
     Each new todo is not finished by default. */
   onSubmit(): void {
     const newMessage = this.form.value.message;
-    if (!newMessage && !newMessage.trim()) {
+    if (newMessage === '' || !newMessage?.trim()) {
       this.focusInput();
       return;
     }
