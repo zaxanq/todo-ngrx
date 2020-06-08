@@ -4,6 +4,8 @@ import { Todo } from '../../models/todo.model';
 import { Order } from '../../models/order.model';
 import { SortBy } from '../../enums/sortBy.enum';
 import { OrderEnum } from '../../enums/order.enum';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { DragDetails } from '../../models/drag-details.model';
 
 /* Displays list of todos passed as an Input, together with type (of type Status).
   Responsible for communication between single todo component and todos container. */
@@ -15,7 +17,7 @@ import { OrderEnum } from '../../enums/order.enum';
 })
 export class TodoListComponent {
   @Input()
-  type: Status.Todo | Status.Done;
+  type: Status;
   @Input()
   list: Todo[];
   @Input()
@@ -27,6 +29,8 @@ export class TodoListComponent {
   todoRemoved: EventEmitter<Todo> = new EventEmitter<Todo>();
   @Output()
   sortChange: EventEmitter<Order> = new EventEmitter<Order>();
+  @Output()
+  todoDragged: EventEmitter<DragDetails> = new EventEmitter<DragDetails>();
 
   sortByDate = SortBy.date;
   sortByMessage = SortBy.message;
@@ -55,5 +59,16 @@ export class TodoListComponent {
         list: this.type
       }
     );
+  }
+
+  drop(event: CdkDragDrop<string[]>): void {
+    if (event.previousContainer !== event.container) {
+      this.todoDragged.emit(
+        {
+          todoId: event.item.element.nativeElement.id,
+          newTargetList: this.type,
+        }
+      );
+    }
   }
 }

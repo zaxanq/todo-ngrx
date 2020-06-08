@@ -19,6 +19,7 @@ import { TodoComponent } from './components/todo/todo.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { OverdueTodoDirective } from './directives/overdue-todo.directive';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { OverdueTodoDirective } from './directives/overdue-todo.directive';
     EffectsModule.forFeature(effects),
     MatIconModule,
     FormsModule,
+    DragDropModule,
   ],
   exports: [
     TodosComponent,

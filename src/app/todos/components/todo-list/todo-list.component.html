@@ -23,14 +23,20 @@
       </button>
     </div>
   </mat-card-header>
-  <mat-card-content>
+  <mat-card-content
+    cdkDropList
+    cdkDropListSortingDisabled
+    [cdkDropListData]="items"
+    (cdkDropListDropped)="drop($event)">
     <app-todo
       *ngFor="let item of list"
+      [id]="item.id"
       [task]="item"
       (update)="handleUpdate($event)"
       (remove)="handleRemove($event)"
       class="todo"
       appOverdueTodo
+      cdkDrag
     ></app-todo>
   </mat-card-content>
 </mat-card>

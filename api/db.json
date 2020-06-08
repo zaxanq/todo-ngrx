@@ -29,51 +29,6 @@
       "id": "1591270162700",
       "message": "Do laundry",
       "done": false
-    },
-    {
-      "id": "1591358475706",
-      "message": "A-Message",
-      "done": true
-    },
-    {
-      "id": "1591358478569",
-      "message": "B-Message",
-      "done": true
-    },
-    {
-      "id": "1591360955505",
-      "message": "C-Message",
-      "done": true
-    },
-    {
-      "id": "1591361250009",
-      "message": "D-Message",
-      "done": true
-    },
-    {
-      "id": "1591362014762",
-      "message": "Z-Message",
-      "done": false
-    },
-    {
-      "id": "1591362022688",
-      "message": "Y-Message",
-      "done": false
-    },
-    {
-      "id": "1591362290396",
-      "message": "ddd",
-      "done": false
-    },
-    {
-      "id": "1591362291568",
-      "message": "dddd",
-      "done": false
-    },
-    {
-      "id": "1591362294405",
-      "message": "dddd",
-      "done": false
     }
   ]
 }

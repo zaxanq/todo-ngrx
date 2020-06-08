@@ -1,11 +1,20 @@
 @import '~src/styles/variables';
 
 :host {
+  width: 50%;
+  height: 100%;
+  padding-top: $todos-padding-top;
+}
+
+:host,
+.todos__lists-container {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  width: 50%;
-  height: 100%;
-  padding-top: $todos-padding-top;
+}
+
+.todos__lists-container {
+  width: 100%;
+  flex: 1;
 }

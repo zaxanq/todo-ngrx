@@ -1,18 +1,22 @@
 <h1>To do list</h1>
 <app-add-todo (addTodo)="handleAddTodo($event)"></app-add-todo>
-<app-todo-list
-  [list]="unfinishedNotes$ | async"
-  [order]="unfinishedOrder$ | async"
-  [type]="'To do'"
-  (todoUpdated)="handleTodoUpdate($event)"
-  (todoRemoved)="handleTodoRemove($event)"
-  (sortChange)="handleSortChange($event)"
-></app-todo-list>
-<app-todo-list
-  [list]="finishedNotes$ | async"
-  [order]="finishedOrder$ | async"
-  [type]="'Done'"
-  (todoUpdated)="handleTodoUpdate($event)"
-  (todoRemoved)="handleTodoRemove($event)"
-  (sortChange)="handleSortChange($event)"
-></app-todo-list>
+<div class="todos__lists-container" cdkDropListGroup>
+  <app-todo-list
+    [list]="unfinishedNotes$ | async"
+    [order]="unfinishedOrder$ | async"
+    [type]="statusTodo"
+    (todoUpdated)="handleTodoUpdate($event)"
+    (todoRemoved)="handleTodoRemove($event)"
+    (sortChange)="handleSortChange($event)"
+    (todoDragged)="handleTodoDrag($event)"
+  ></app-todo-list>
+  <app-todo-list
+    [list]="finishedNotes$ | async"
+    [order]="finishedOrder$ | async"
+    [type]="statusDone"
+    (todoUpdated)="handleTodoUpdate($event)"
+    (todoRemoved)="handleTodoRemove($event)"
+    (sortChange)="handleSortChange($event)"
+    (todoDragged)="handleTodoDrag($event)"
+  ></app-todo-list>
+</div>
