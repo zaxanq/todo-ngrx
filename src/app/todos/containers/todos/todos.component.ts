@@ -24,8 +24,8 @@ export class TodosComponent implements OnInit {
 
   /* On initialization get list of Todos, dispatch an action to load them and prepare them for todo-list components. */
   ngOnInit(): void {
-    this.finishedNotes$ = this.store.select(fromStore.getFinishedTodos).pipe();
-    this.unfinishedNotes$ = this.store.select(fromStore.getUnfinishedTodos).pipe();
+    this.finishedNotes$ = this.store.select(fromStore.getSortedFinishedTodos).pipe();
+    this.unfinishedNotes$ = this.store.select(fromStore.getSortedUnfinishedTodos).pipe();
     this.finishedOrder$ = this.store.select(fromStore.getFinishedTodosOrder).pipe();
     this.unfinishedOrder$ = this.store.select(fromStore.getUnfinishedTodosOrder).pipe();
 
