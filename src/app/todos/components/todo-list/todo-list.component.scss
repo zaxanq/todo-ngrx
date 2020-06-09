@@ -22,6 +22,10 @@
   }
 }
 
+.mat-card-content {
+  min-height: 5rem;
+}
+
 .todo-list__controls {
   display: flex;
   justify-content: flex-start;
