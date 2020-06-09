@@ -23,11 +23,6 @@ export class TodoListComponent implements OnInit {
   @Input()
   order: Order;
 
-  items: string[];
-
-  ngOnInit(): void {
-    this.items = this.list.map((todo: Todo) => todo.message);
-  }
 
   @Output()
   todoUpdated: EventEmitter<Todo> = new EventEmitter<Todo>();
@@ -40,6 +35,11 @@ export class TodoListComponent implements OnInit {
 
   sortByDate = SortBy.date;
   sortByMessage = SortBy.message;
+  items: string[];
+
+  ngOnInit(): void {
+    this.items = this.list.map((todo: Todo) => todo.message);
+  }
 
   handleUpdate(updatedTodo: Todo): void {
     this.todoUpdated.emit(updatedTodo);
