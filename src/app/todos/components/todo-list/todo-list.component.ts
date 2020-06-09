@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Status } from '../../enums/status.enum';
 import { Todo } from '../../models/todo.model';
 import { Order } from '../../models/order.model';
@@ -15,13 +15,19 @@ import { DragDetails } from '../../models/drag-details.model';
   styleUrls: ['./todo-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TodoListComponent {
+export class TodoListComponent implements OnInit {
   @Input()
   type: Status;
   @Input()
   list: Todo[];
   @Input()
   order: Order;
+
+  items: string[];
+
+  ngOnInit(): void {
+    this.items = this.list.map((todo: Todo) => todo.message);
+  }
 
   @Output()
   todoUpdated: EventEmitter<Todo> = new EventEmitter<Todo>();
